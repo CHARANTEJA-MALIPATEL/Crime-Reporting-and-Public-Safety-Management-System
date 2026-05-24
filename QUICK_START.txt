@@ -1,0 +1,143 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║     CRIME REPORTING SYSTEM - QUICK START GUIDE                   ║
+║     ML Model Integration Complete ✅                             ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────┐
+│ STEP 1: INSTALL DEPENDENCIES (First Time Only)                  │
+└──────────────────────────────────────────────────────────────────┘
+
+  cd ml-model
+  pip install -r requirements.txt
+
+┌──────────────────────────────────────────────────────────────────┐
+│ STEP 2: START SERVICES                                          │
+└──────────────────────────────────────────────────────────────────┘
+
+  Option A - Automatic (Recommended):
+  ┌────────────────────────────────────────────────────────────────┐
+  │ Double-click: START_ML_AND_BACKEND.bat                         │
+  └────────────────────────────────────────────────────────────────┘
+
+  Option B - Manual:
+  ┌────────────────────────────────────────────────────────────────┐
+  │ Terminal 1:  cd ml-model && python predict.py                 │
+  │ Terminal 2:  cd server && npm start                           │
+  └────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────┐
+│ STEP 3: VERIFY INTEGRATION                                      │
+└──────────────────────────────────────────────────────────────────┘
+
+  python verify_integration.py
+
+  Expected output:
+  ✅ ML Service:           PASS
+  ✅ Backend Server:       PASS
+  ✅ ML Classification:    PASS
+  ✅ Backend Integration:  PASS
+
+┌──────────────────────────────────────────────────────────────────┐
+│ STEP 4: USE THE APPLICATION                                     │
+└──────────────────────────────────────────────────────────────────┘
+
+  1. Open browser: http://localhost:3000
+  2. Register a new account
+  3. Login
+  4. Submit a crime report
+  5. Watch it get classified automatically! 🎉
+
+╔══════════════════════════════════════════════════════════════════╗
+║ SERVICES                                                         ║
+╚══════════════════════════════════════════════════════════════════╝
+
+  ML Service:  http://localhost:5000
+  Backend:     http://localhost:3000
+  Frontend:    http://localhost:3000 (served by backend)
+
+╔══════════════════════════════════════════════════════════════════╗
+║ TESTING                                                          ║
+╚══════════════════════════════════════════════════════════════════╝
+
+  Test ML Service:
+  cd ml-model
+  python test_ml_service.py
+
+  Check Crime Categories:
+  cd ml-model
+  python check_categories.py
+
+  Manual API Test:
+  curl -X POST http://localhost:5000/predict ^
+    -H "Content-Type: application/json" ^
+    -d "{\"description\":\"Someone stole my bike\"}"
+
+╔══════════════════════════════════════════════════════════════════╗
+║ TROUBLESHOOTING                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+  Problem: ML service won't start
+  Solution: pip install -r ml-model/requirements.txt
+
+  Problem: "Model not loaded"
+  Solution: cd ml-model && python train.py
+
+  Problem: Port 5000 in use
+  Solution: netstat -ano | findstr :5000
+            taskkill /PID <process_id> /F
+
+  Problem: Backend shows "Unclassified"
+  Solution: Make sure ML service is running
+            curl http://localhost:5000/health
+
+╔══════════════════════════════════════════════════════════════════╗
+║ DOCUMENTATION                                                    ║
+╚══════════════════════════════════════════════════════════════════╝
+
+  📖 ML_SETUP_COMPLETE.md      - Setup summary
+  📖 ML_INTEGRATION_GUIDE.md   - Complete guide
+  📖 README.md                 - Project overview
+
+╔══════════════════════════════════════════════════════════════════╗
+║ YOUR ML MODEL                                                    ║
+╚══════════════════════════════════════════════════════════════════╝
+
+  Algorithm:  Multinomial Naive Bayes
+  Features:   TF-IDF Vectorization
+  Categories: 39 crime types (San Francisco dataset)
+  Accuracy:   ~70-80%
+  
+  Files:
+  ✅ ml-model/model.pkl       - Trained model
+  ✅ ml-model/vectorizer.pkl  - TF-IDF vectorizer
+  ✅ ml-model/Crime1.csv      - Training data
+  ✅ ml-model/predict.py      - Flask service
+
+╔══════════════════════════════════════════════════════════════════╗
+║ INTEGRATION FLOW                                                 ║
+╚══════════════════════════════════════════════════════════════════╝
+
+  User Report → Frontend → Backend → ML Service → Model
+                                         ↓
+  Database ← Backend ← Classification Result
+
+╔══════════════════════════════════════════════════════════════════╗
+║ SUCCESS! 🎉                                                      ║
+╚══════════════════════════════════════════════════════════════════╝
+
+  Your ML model is fully integrated with the backend!
+  
+  Crime reports will now be automatically classified into
+  categories like:
+  - LARCENY/THEFT
+  - BURGLARY
+  - ASSAULT
+  - ROBBERY
+  - VANDALISM
+  - And 34 more...
+
+  Start the services and try it out!
+
+═══════════════════════════════════════════════════════════════════

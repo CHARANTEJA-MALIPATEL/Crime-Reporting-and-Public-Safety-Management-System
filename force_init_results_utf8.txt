@@ -1,0 +1,11 @@
+﻿--- Force Database Initialization ---
+DB_HOST: localhost
+DB_USER: root
+DB_NAME: crime_reporting_db
+1. Connected to MySQL.
+2. Creating database crime_reporting_db if not exists...
+3. Using database crime_reporting_db...
+4. Executing schema.sql...
+5. Tables created: crime_reports, report_evidence, report_tracking, users
+6. All Databases: crime_reporting_db, information_schema, mysql, performance_schema, sakila, sys, testdb, world
+--- Initialization Finished Successfully ---

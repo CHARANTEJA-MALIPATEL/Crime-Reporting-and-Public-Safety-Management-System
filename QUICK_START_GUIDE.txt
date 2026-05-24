@@ -1,0 +1,168 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║          HOW TO START YOUR CRIME REPORTING SYSTEM                ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│  🎯 EASIEST WAY - Just Double-Click This File:                  │
+│                                                                  │
+│     START_ML_AND_BACKEND.bat                                    │
+│                                                                  │
+│  That's it! Everything starts automatically! 🎉                 │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════
+                    OR DO IT MANUALLY:
+═══════════════════════════════════════════════════════════════════
+
+
+┌──────────────────────────────────────────────────────────────────┐
+│ STEP 1: Start ML Service                                        │
+└──────────────────────────────────────────────────────────────────┘
+
+  Open Command Prompt and type:
+
+  cd F:\charan\Crime_Reporting\ml-model
+  python predict.py
+
+  You should see:
+  ┌────────────────────────────────────────────────────────────────┐
+  │ ✅ Model loaded successfully!                                 │
+  │ 🌐 Server: http://localhost:5000                              │
+  └────────────────────────────────────────────────────────────────┘
+
+  ⚠️  KEEP THIS WINDOW OPEN!
+
+
+┌──────────────────────────────────────────────────────────────────┐
+│ STEP 2: Start Backend Server                                    │
+└──────────────────────────────────────────────────────────────────┘
+
+  Open ANOTHER Command Prompt and type:
+
+  cd F:\charan\Crime_Reporting\server
+  npm start
+
+  You should see:
+  ┌────────────────────────────────────────────────────────────────┐
+  │ Server is running on port 3000                                │
+  └────────────────────────────────────────────────────────────────┘
+
+  ⚠️  KEEP THIS WINDOW OPEN TOO!
+
+
+┌──────────────────────────────────────────────────────────────────┐
+│ STEP 3: Open Your Browser                                       │
+└──────────────────────────────────────────────────────────────────┘
+
+  Go to: http://localhost:3000
+
+  🎉 Your application is now running!
+
+
+═══════════════════════════════════════════════════════════════════
+                    WHAT YOU NEED RUNNING:
+═══════════════════════════════════════════════════════════════════
+
+  ┌────────────────────────────────────────────────────────────────┐
+  │                                                                │
+  │  Terminal 1:  ML Service (Port 5000)                          │
+  │               python predict.py                               │
+  │               Status: ✅ MUST BE RUNNING                      │
+  │                                                                │
+  │  Terminal 2:  Backend (Port 3000)                             │
+  │               npm start                                       │
+  │               Status: ✅ MUST BE RUNNING                      │
+  │                                                                │
+  │  Browser:     http://localhost:3000                           │
+  │               Your application                                │
+  │                                                                │
+  └────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════
+                    HOW TO STOP:
+═══════════════════════════════════════════════════════════════════
+
+  1. Go to Terminal 1 (ML Service)
+     Press: Ctrl + C
+
+  2. Go to Terminal 2 (Backend)
+     Press: Ctrl + C
+
+  3. Close both terminal windows
+
+
+═══════════════════════════════════════════════════════════════════
+                    QUICK CHECKS:
+═══════════════════════════════════════════════════════════════════
+
+  ✅ Is ML Service Running?
+     Open browser: http://localhost:5000/health
+     Should show: {"status": "healthy"}
+
+  ✅ Is Backend Running?
+     Open browser: http://localhost:3000
+     Should show: SafeCity homepage
+
+  ✅ Is Everything Connected?
+     Run: python verify_integration.py
+     Should show: All checks PASS
+
+
+═══════════════════════════════════════════════════════════════════
+                    TROUBLESHOOTING:
+═══════════════════════════════════════════════════════════════════
+
+  Problem: "Port already in use"
+  ────────────────────────────────────────────────────────────────
+  Solution:
+    netstat -ano | findstr :5000
+    taskkill /PID XXXX /F
+    (Replace XXXX with the PID number)
+
+
+  Problem: "Module not found" (Python)
+  ────────────────────────────────────────────────────────────────
+  Solution:
+    cd ml-model
+    pip install -r requirements.txt
+
+
+  Problem: "Module not found" (Node.js)
+  ────────────────────────────────────────────────────────────────
+  Solution:
+    cd server
+    npm install
+
+
+  Problem: Reports show "Unclassified"
+  ────────────────────────────────────────────────────────────────
+  Solution:
+    Make sure ML service is running!
+    Check: http://localhost:5000/health
+
+
+═══════════════════════════════════════════════════════════════════
+                    REMEMBER:
+═══════════════════════════════════════════════════════════════════
+
+  ✅ You need TWO terminal windows open
+  ✅ One for ML service (port 5000)
+  ✅ One for Backend (port 3000)
+  ✅ Don't close them while using the app!
+  ✅ Use START_ML_AND_BACKEND.bat for easy startup
+
+
+═══════════════════════════════════════════════════════════════════
+
+                    🎉 YOU'RE ALL SET!
+
+  Just double-click START_ML_AND_BACKEND.bat and you're ready to go!
+
+═══════════════════════════════════════════════════════════════════

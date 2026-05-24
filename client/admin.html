@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Dashboard - SafeCity</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body onload="loadAdminDashboard()">
+
+    <nav class="navbar" style="border-bottom-color: #dc2626;">
+        <a href="admin.html" class="navbar-brand">
+            <i class="fas fa-user-shield"></i> SAFECITY ADMIN
+        </a>
+        <div class="nav-links">
+            <a href="admin.html" class="nav-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="index.html#contact" class="nav-link"><i class="fas fa-phone"></i> Contact</a>
+            <span style="color: #4b5563; font-weight: 500; margin-left: 1rem;">
+                <i class="fas fa-user-shield"></i> Officer: <span id="userName" style="color: #dc2626; font-weight: 700;">Admin</span>
+            </span>
+            <button onclick="logout()" class="btn btn-outline small">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="container" style="max-width: 1200px;">
+            <div style="margin-bottom: 2rem;">
+                <h2>Incoming Crime Reports</h2>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                    <select id="filterStatus" class="form-control" style="width: auto; min-width: 200px;" onchange="applyFilters()">
+                        <option value="">Filter by Status: All</option>
+                        <option value="pending">Pending</option>
+                        <option value="verified">Verified</option>
+                        <option value="investigation">Under Investigation</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                    <select id="filterCategory" class="form-control" style="width: auto; min-width: 200px;" onchange="applyFilters()">
+                        <option value="">Filter by Category: All</option>
+                    </select>
+                    <button onclick="clearFilters()" class="btn btn-outline small" style="margin-left: auto;">
+                        <i class="fas fa-times"></i> Clear Filters
+                    </button>
+                </div>
+                <div id="filterStats" style="margin-top: 1rem; font-size: 0.9rem; color: #6b7280;">
+                    <!-- Filter statistics will appear here -->
+                </div>
+            </div>
+
+            <div id="all-reports-list" style="display: grid; gap: 1.5rem;">
+                <!-- Admin Reports will be loaded here -->
+                <p style="text-align: center; color: #6b7280; padding: 2rem;">Loading reports...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
+
+    <footer>
+        <div class="container" style="max-width: 1200px;">
+            <div style="border-top: 1px solid #374151; padding: 1.5rem 0; text-align: center;">
+                <p>&copy; 2026 SafeCity Admin Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>

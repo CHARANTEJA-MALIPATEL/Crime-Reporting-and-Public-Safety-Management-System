@@ -1,0 +1,51 @@
+# Implementation Plan - Crime Reporting and Public Safety Management System
+
+## Goal Description
+Build a full-stack web application for citizens to report crimes and police to manage them. The system will features a Node.js backend, MySQL database, vanilla HTML/CS/JS frontend, and a Python-based Naive Bayes classifier for crime categorization.
+
+## User Review Required
+> [!IMPORTANT]
+> This project requires a local MySQL server installation. The provided code will assume standard credentials (which should be configured in a `.env` file). Use the provided `schema.sql` to initialize the database.
+
+> [!NOTE]
+> The ML model will be a simple Python Flask service. Ensure Python is installed to run the ML component.
+
+## Proposed Changes
+
+### Database
+#### [NEW] [schema.sql](file:///C:/Users/malip/.gemini/antigravity/brain/bd1f0466-b79d-49d3-a057-b2413a8b044e/database/schema.sql)
+- Users Table: Stores citizen and admin credentials.
+- CrimeReports Table: Stores complaint details, status, and ML classification.
+- Evidence Table: Links to uploaded media.
+- Remarks Table: History of admin updates.
+
+### Machine Learning (Python)
+#### [NEW] [ml_service.py](file:///C:/Users/malip/.gemini/antigravity/brain/bd1f0466-b79d-49d3-a057-b2413a8b044e/ml/ml_service.py)
+- Flask app exposing `/predict` endpoint.
+- Uses `scikit-learn` or custom Naive Bayes implementation for text classification.
+- Includes a training endpoint or pre-trained model loading.
+
+### Backend (Node.js/Express)
+#### [NEW] [server.js](file:///C:/Users/malip/.gemini/antigravity/brain/bd1f0466-b79d-49d3-a057-b2413a8b044e/server/server.js)
+- Main entry point. Setup middleware, database connection, and routes.
+#### [NEW] [routes](file:///C:/Users/malip/.gemini/antigravity/brain/bd1f0466-b79d-49d3-a057-b2413a8b044e/server/routes/)
+- `auth.js`: Login/Register logic.
+- `reports.js`: CRUD for reports, file upload handling, and internal call to ML service.
+
+### Frontend (HTML/CSS/JS)
+#### [NEW] [client](file:///C:/Users/malip/.gemini/antigravity/brain/bd1f0466-b79d-49d3-a057-b2413a8b044e/client/)
+- `index.html`: Landing page.
+- `login.html`, `register.html`: Auth pages.
+- `dashboard.html`: Main user interface (dynamic based on role).
+- `report.html`: Complaint form.
+- `css/style.css`: Custom styling.
+- `js/app.js`: API interactions and DOM manipulation.
+
+## Verification Plan
+### Automated Tests
+- None planned for this student-level project, but manual API testing with Postman/Curl.
+### Manual Verification
+- Start MySQL, create DB from schema.
+- Start Python ML service.
+- Start Node.js server.
+- Register a user -> Login -> Submit Report (Verify ML tag) -> Admin Login -> Update Status.
